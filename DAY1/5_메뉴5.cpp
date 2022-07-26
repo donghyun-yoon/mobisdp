@@ -81,10 +81,12 @@ int main()
 
 	root->addMenu(pm1);
 	root->addMenu(pm2);
+//	pm1->addMenu(pm2);
 
 	pm1->addMenu(new MenuItem("HD",  11));
 	pm1->addMenu(new MenuItem("FHD", 12));
 	pm1->addMenu(new MenuItem("UHD", 13));
+	pm1->addMenu(new MenuItem("8K",  14));
 
 	pm2->addMenu(new MenuItem("RED",   21));
 	pm2->addMenu(new MenuItem("GREEN", 22));

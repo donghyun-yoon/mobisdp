@@ -6,11 +6,21 @@
 //        있어야 한다.
 //        => 그래야, Shape* 로 묶어서 사용할때 해당 특징을 사용할수 있다.
 
+// 핵심 4. 기반 클래스 멤버 함수중, 파생 클래스가 재정의하게 되는 것은
+//		  반드시 가상함수로 만들어야 한다.
+
 class Shape 
 {
 public:
-	void draw() { std::cout << "draw Shape" << std::endl; }
+	// p->draw() 할때
+	// 일반 멤버 함수 : 포인터 타입으로 함수 결정(Shape draw 호출)
+	// 가상 함수     : 포인터가 가리키는 객체 조사후 함수 결정
+	virtual void draw() { std::cout << "draw Shape" << std::endl; }
 };
+
+
+
+
 
 class Rect : public Shape
 {

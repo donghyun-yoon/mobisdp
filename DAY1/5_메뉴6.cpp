@@ -66,13 +66,11 @@ public:
 			v[cmd - 1]->command();
 		}
 
-
-
 	}
+
+	// 하위 메뉴를 반환하는 함수
+	BaseMenu* getSubMenu(int idx) { return v[idx]; }
 };
-
-
-
 int main()
 {
 	PopupMenu* root = new PopupMenu("root");
@@ -84,6 +82,17 @@ int main()
 	pm1->addMenu(new MenuItem("FHD", 12));
 	pm1->addMenu(new MenuItem("UHD", 13));
 	pm1->addMenu(new MenuItem("8K", 14));
+
+
+	// 아래 한줄을 생각해 봅시다.
+	// 1. getSubMenu 가 BaseMenu* 로 반환하므로 "static_cast<PopupMenu*>" 로
+	//    캐스팅후 사용하게 하자.
+	// 2. addMenu 를 BaseMenu 에 선언해주고, 캐스팅 없이 사용하게 하자.
+	//    단, MenuItem 에 대해서 addMenu 호출시 예외 나오게 하자.
+	root->getSubMenu(0)->addMenu(new MenuItem("16K", 15));
+	//<- 해상도 변경 메뉴 ->
+
+
 
 	// 이제 최상위 메뉴를 누르면 시작됩니다.
 	root->command();

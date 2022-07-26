@@ -26,11 +26,13 @@ int main()
 
 		if (cmd == 1)
 		{
-			Rect r;
+			// Rect r;   // <= 이렇게 하면 {} 벗어 날때 즉시 파괴됩니다.
+						 //    사용자가 명시적으로 지울때 까지 남아 있게 하려면
+			v.push_back(new Rect); // 이렇게 new 로 하는 방법 밖에 없습니다.
 		}
 		else if (cmd == 2)
 		{
-
+			v.push_back(new Circle);
 		}
 		else if (cmd == 9)
 		{
@@ -39,4 +41,6 @@ int main()
 		}
 	}
 }
-
+// 컴파일 하면 에러 발생합니다.
+// 왜, 어디서 에러 일까요 ?
+// 해결책은 뭘까요 ?

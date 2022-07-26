@@ -16,7 +16,8 @@
 // 핵심 7. 리팩토링 용어 입니다. 의미를 생각해 보세요
 
 // "Replace Conditional With Polymorphism"
-
+// => 조건문(if, switch) 가 있다면 "다형성(가상함수)"로 변경하는 것을 생각해 보아라
+// => "도형편집기4-1" 이 조건문, "도형편집기4-2" 가 다형성 사용
 
 
 class Shape

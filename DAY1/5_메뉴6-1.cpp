@@ -107,7 +107,12 @@ int main()
 									// 예외 발생
 	root->command();
 }
-
+// Base* p = Base로 부터 파생된 클래스;
+// p->f();
+// static type check 언어 : 컴파일 시에 Base 안에 f()가 없으면 컴파일 에러
+// dynamic type check(python) : 실행시간에 p가 가리키는 객체에 f()가 없으면
+//								예외 발생
+//								컴파일 시간은 항상 성공
 
 
 

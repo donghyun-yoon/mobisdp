@@ -31,9 +31,34 @@ public:
 	// 팝업메뉴를 선택할때 해야 할일을 생각해보세요 - 핵심!
 	void command()
 	{
+		int sz = v.size();
 
+		for (int i = 0; i < sz; i++)
+		{
+			std::cout << i + 1 << ". " << v[i]->getTitle() << std::endl;
+		}
+
+		std::cout << sz + 1 << ". 종료" << std::endl;
+
+		std::cout << "메뉴를 선택하세요"  << std::endl;
+
+		int cmd;
+		std::cin >> cmd;
+
+		// 선택한 메뉴를 실행
+		v[cmd - 1]->command();
 	}
 };
+
+
+
+
+
+
+
+
+
+
 int main()
 {
 	MenuItem m1("김밥", 11);

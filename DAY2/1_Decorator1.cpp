@@ -7,6 +7,8 @@ public:
 	void Fire()	{ std::cout << "Fire Missile" << std::endl; }
 };
 // 상속을 사용한 기능의 추가
+// => 객체에 기능 추가가 아니라, 클래스에 기능을 추가한것
+// => 동적인 기능 추가가 아닌, 정적(코드 작성시) 기능을 추가.
 class LeftMissile : public SpaceShip
 {
 public:
@@ -22,7 +24,8 @@ int main()
 	SpaceShip ss;
 	ss.Fire();
 
-	LeftMissile lm;
+	LeftMissile lm;	// ss라는 객체에 기능이 추가된 것이 아니라
+				    // 기능이 추가된 새로운 객체를 생성 한것
 	lm.Fire();
 }
 

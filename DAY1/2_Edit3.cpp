@@ -44,10 +44,24 @@ public:
 		return data;
 	}
 };
+// 이제 다양한 정책을 가진 Validator를 만들어서 제공하면 됩니다.
+class LimitDigitValidator : public IValidator
+{
+	int value;
+public:
+	LimitDigitValidator(int n) : value(n) {}
+
+	virtual bool validate(const std::string& s, char c) override
+	{
+		return s.size() < value && isdigit(c);
+	}
+};
 
 int main()
 {
 	Edit e;
+	LimitDigitValidator v(5); // 입력 값의 유효성을 확인하는 객체
+	e.setValidator(&v);
 	while (1)
 	{
 		std::cout << e.getData() << std::endl;

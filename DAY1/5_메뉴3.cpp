@@ -31,22 +31,34 @@ public:
 	// 팝업메뉴를 선택할때 해야 할일을 생각해보세요 - 핵심!
 	void command()
 	{
-		int sz = v.size();
-
-		for (int i = 0; i < sz; i++)
+		while (1)
 		{
-			std::cout << i + 1 << ". " << v[i]->getTitle() << std::endl;
+			system("cls"); // 화면 지우기
+
+			int sz = v.size();
+			for (int i = 0; i < sz; i++)
+			{
+				std::cout << i + 1 << ". " << v[i]->getTitle() << std::endl;
+			}
+			std::cout << sz + 1 << ". 종료" << std::endl;
+			std::cout << "메뉴를 선택하세요"  << std::endl;
+
+			int cmd;
+			std::cin >> cmd;
+
+			if (cmd == sz + 1) // 종료 선택시
+				break;
+
+			if ( cmd < 1 || cmd > sz +1 ) // 잘못된 선택
+
+
+
+			// 선택한 메뉴를 실행
+			v[cmd - 1]->command();
 		}
 
-		std::cout << sz + 1 << ". 종료" << std::endl;
 
-		std::cout << "메뉴를 선택하세요"  << std::endl;
 
-		int cmd;
-		std::cin >> cmd;
-
-		// 선택한 메뉴를 실행
-		v[cmd - 1]->command();
 	}
 };
 

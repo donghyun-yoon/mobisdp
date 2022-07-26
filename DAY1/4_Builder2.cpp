@@ -52,6 +52,7 @@ public:
 	virtual Shoes makeShoes()  override { return Shoes("±¸µÎ"); }
 };
 
+
 int main()
 {
 	Korean k;

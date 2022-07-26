@@ -17,35 +17,26 @@ public:
 class People
 {
 public:
-	void UseCamera(? p) { p->Take(); }
+	void UseCamera(ICamera* p) { p->Take(); }
 };
 
-
-
-
-
-
-
-
-
-
-class Camera
+// 이제 모든 카메라는 반드시 규칙을 지켜야 합니다.
+class Camera : public ICamera
 {
 public:
 	void Take() { std::cout << "Take Picture" << std::endl; }
 };
 
-class HDCamera
+class HDCamera : public ICamera
 {
 public:
 	void Take() { std::cout << "Take HD Picture" << std::endl; }
 };
 
-class People
+class UHDCamera : public ICamera
 {
 public:
-	void UseCamera(Camera* p) { p->Take(); }
-	void UseCamera(HDCamera* p) { p->Take(); }
+	void Take() { std::cout << "Take UHD Picture" << std::endl; }
 };
 
 int main()
@@ -55,7 +46,13 @@ int main()
 	p.UseCamera(&c);
 
 	HDCamera hc;
-	p.UseCamera(&hc); // ?
+	p.UseCamera(&hc); // ok
+
+	UHDCamera uhc;
+	p.UseCamera(&uhc); // ok.. 나중에 추가한 클래스도 
+						//		People 클래스 수정없이 사용가능
+						// OCP 규칙을 만족하는 유연한 코드..!!
+
 }
 
 

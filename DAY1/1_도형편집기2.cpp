@@ -36,8 +36,9 @@ int main()
 		}
 		else if (cmd == 9)
 		{
-			for (auto p : v)
-				p->draw();
+			for (auto p : v)	// p는 Shape* 타입인데
+				p->draw();		// Shape 에는 draw가 없습니다.
+								// 그래서, error 입니다.
 		}
 	}
 }

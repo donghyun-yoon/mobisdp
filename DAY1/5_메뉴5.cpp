@@ -75,20 +75,23 @@ public:
 
 int main()
 {
-	MenuItem m1("ÂüÄ¡±è¹ä", 11);
-	MenuItem m2("¼Ò°í±â±è¹ä", 12);
-	MenuItem m3("¶ó¸é", 13);
-	MenuItem m4("¶±ººÀÌ", 14);
+	PopupMenu* root = new PopupMenu("root");
+	PopupMenu* pm1 = new PopupMenu("ÇØ»óµµ º¯°æ");
+	PopupMenu* pm2 = new PopupMenu("»ö»ó º¯°æ");
 
-	PopupMenu kimbam("±è¹ä·ù");
-	kimbam.addMenu(&m1);
-	kimbam.addMenu(&m2);
+	root->addMenu(pm1);
+	root->addMenu(pm2);
 
-	PopupMenu pm("¿À´ÃÀÇ ¸Þ´º");
-	pm.addMenu(&kimbam); 
-	pm.addMenu(&m3);
-	pm.addMenu(&m4);
-	pm.command();
+	pm1->addMenu(new MenuItem("HD",  11));
+	pm1->addMenu(new MenuItem("FHD", 12));
+	pm1->addMenu(new MenuItem("UHD", 13));
+
+	pm2->addMenu(new MenuItem("RED",   21));
+	pm2->addMenu(new MenuItem("GREEN", 22));
+	pm2->addMenu(new MenuItem("BLUE",  23));
+
+	// ÀÌÁ¦ ÃÖ»óÀ§ ¸Þ´º¸¦ ´©¸£¸é ½ÃÀÛµË´Ï´Ù.
+	root->command();
 }
 
 

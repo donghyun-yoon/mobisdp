@@ -49,8 +49,8 @@ public:
 			if (cmd == sz + 1) // 종료 선택시
 				break;
 
-			if ( cmd < 1 || cmd > sz +1 ) // 잘못된 선택
-
+			if (cmd < 1 || cmd > sz + 1) // 잘못된 선택
+				continue;
 
 
 			// 선택한 메뉴를 실행

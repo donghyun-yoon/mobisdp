@@ -1,6 +1,11 @@
 #include <iostream>
 #include <vector>
 
+// 핵심 8. template method 디자인 패턴
+// => 변하지 않은 전체 적인 흐름을 담은 함수를 기반 클래스가 제공
+// => 변해야 하는 부분만 가상함수화 해서 파생 클래스가 재정의 할수 있게
+// => 가장 널리 사용되는 디자인 패턴중 하나..
+
 
 class Shape
 {
@@ -10,7 +15,24 @@ public:
 	void setColor(int c) { color = c; }
 	int  getColor() const { return color; }
 
-	virtual void draw() { std::cout << "draw Shape" << std::endl; }
+	// 공통성안에 있는 가변성을 찾아서 분리한다.
+	// => 변하지 않은 흐름속에 있는 변하는 부분을 찾는다.
+	// => 변하는 코드는 가상함수로 분리한다.
+protected:
+	virtual void drawImp() 
+	{
+		std::cout << "draw Shape" << std::endl; 
+	} 
+
+public:
+	void draw() 
+	{ 
+		std::cout << "mutex.lock" << std::endl;
+		drawImp();
+		std::cout << "mutex.unlock" << std::endl;
+	}
+
+
 
 	
 	virtual Shape* clone() const
@@ -29,7 +51,7 @@ public:
 class Rect : public Shape
 {
 public:
-	void draw() { std::cout << "draw Rect" << std::endl; }
+	void drawImp() { std::cout << "draw Rect" << std::endl; }
 
 	virtual Shape* clone() const
 	{
@@ -41,7 +63,7 @@ public:
 class Circle : public Shape
 {
 public:
-	void draw() { std::cout << "draw Circle" << std::endl; }
+	void drawImp() { std::cout << "draw Circle" << std::endl; }
 
 	virtual Shape* clone() const
 	{

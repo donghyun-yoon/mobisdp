@@ -22,7 +22,7 @@ public:
 int main()
 {
 	MenuItem m1("김밥", 11);
-	MenuItem m2("라면", 11);
+	MenuItem m2("라면", 12);
 
 	m1.command(); // 메뉴 선택시 호출되는 함수
 }

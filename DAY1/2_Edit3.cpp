@@ -15,13 +15,14 @@ struct IValidator
 };
 // 주민 등록 번호 : 901  1     확인
 
-
-
-
 class Edit
 {
 	std::string data;
+	
+	IValidator* pval = nullptr;	// 입력값의 유효성을 확인할 객체
 public:
+	void setValidator(IValidator* p) { pval = p; }
+
 	std::string getData()
 	{
 		data.clear();
@@ -30,10 +31,11 @@ public:
 		{
 			char c = _getch(); 
 
-			if (c == 13) break; 
+			if (c == 13 && (pval == nullptr || pval->iscomplete(data))) 
+				break;
 
-			if (isdigit(c))   
-			{
+			if (pval == nullptr || pval->validate(data, c)) // 입력값의 유효성 여부를
+			{											// 다른 객체에 위임.
 				data.push_back(c);
 				std::cout << c;
 			}

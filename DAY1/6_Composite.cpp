@@ -77,3 +77,15 @@ int main()
 	std::cout << root->getSize() << std::endl; // 30
 }
 
+// Folder/File 의 구조는 
+// PopupMenu/MenuItem 의 구조와 동일합니다.
+// 즉, 이런 스타일 코드가 너무 많아서 "Composite" 패턴 이라는 이름을 부여 했습니다.
+
+// 오늘 나온 패턴 이름
+
+// template method : 변하는 것을 가상함수화!
+// strategy
+// state
+// builder
+// composite
+// prototype : 기존 객체를 복사해서 새로운 객체 생성

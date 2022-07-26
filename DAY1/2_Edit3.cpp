@@ -55,6 +55,10 @@ public:
 	{
 		return s.size() < value && isdigit(c);
 	}
+	virtual bool iscomplete(const std::string& s) override
+	{
+		return s.size() == value;
+	}
 };
 
 int main()
@@ -62,6 +66,7 @@ int main()
 	Edit e;
 	LimitDigitValidator v(5); // 입력 값의 유효성을 확인하는 객체
 	e.setValidator(&v);
+
 	while (1)
 	{
 		std::cout << e.getData() << std::endl;

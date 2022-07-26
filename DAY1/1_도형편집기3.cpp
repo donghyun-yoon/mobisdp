@@ -11,7 +11,14 @@
 
 class Shape 
 {
+protected:
+	int color;
 public:
+	// 아래 2개 함수는 virtual 로 할까요 ? 하지 말까요 ?
+	// => 파생 클래스가 재정의 할 필요 없습니다. 가상함수로 할 필요없습니다.
+	void setColor(int c) { color = c; }
+	int  getColor() const { return color; }
+
 	// p->draw() 할때
 	// 일반 멤버 함수 : 포인터 타입으로 함수 결정(Shape draw 호출)
 	// 가상 함수     : 포인터가 가리키는 객체 조사후 함수 결정
@@ -34,6 +41,12 @@ public:
 	void draw() { std::cout << "draw Circle" << std::endl; }
 };
 
+class Triangle : public Shape
+{
+public:
+	void draw() { std::cout << "draw Triangle" << std::endl; }
+};
+
 int main()
 {
 	std::vector<Shape*> v;
@@ -54,7 +67,13 @@ int main()
 		else if (cmd == 9)
 		{
 			for (auto p : v)	
-				p->draw();		
+				p->draw();	// 다형성(Polymorphism)
+							// 동일한 표현식이 상황에 따라(객체의 종류)
+							// 다르게 동작하는 것
+
+					// 장점 : 새로운 도형(Triangle)이 추가되어도
+					//       이 한줄은 변경될 필요 없다.
+					//       OCP를 만족하는 좋은 코드이다.  
 		}
 	}
 }

@@ -1,6 +1,23 @@
 #include <iostream>
 #include <vector>
 
+// 핵심 5. 디자인 패턴 이란 ?
+//        자주 사용되는 코딩 스타일에 "이름"을 부여 한것
+//        1994년 4명의 개발자가 쓴 "Design Pattern 책"
+//        23개의 이름을 정의
+
+// 핵심 6. prototype 패턴 : 견본 객체를 만들고, 복사를 통해서 새로운 
+//						  객체를 만드는 기술
+//						  clone 가상함수
+// C# 코드 : int[] a1 = {1,2,3}
+//           int[] a2 = a1;  // a1과 같은 배열 사용
+//           int[] a3 = a1.copy(); // 
+
+// 핵심 7. 리팩토링 용어 입니다. 의미를 생각해 보세요
+
+// "Replace Conditional With Polymorphism"
+
+
 
 class Shape
 {

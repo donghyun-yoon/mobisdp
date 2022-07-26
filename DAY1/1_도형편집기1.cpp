@@ -13,6 +13,7 @@ class Rect : public Shape
 public:
 	void draw() { std::cout << "draw Rect" << std::endl; }
 };
+
 class Circle : public Shape
 {
 public:
@@ -21,8 +22,8 @@ public:
 
 int main()
 {
-	std::vector<Rect*> v; // Rect만 보관 가능한 vector
-	std::vector<void*> v; // 모든 타입의 주소를 보관
+//	std::vector<Rect*> v; // Rect만 보관 가능한 vector
+//	std::vector<void*> v; // 모든 타입의 주소를 보관
 	std::vector<Shape*> v; // 모든 종류의 도형을 보관
 
 }

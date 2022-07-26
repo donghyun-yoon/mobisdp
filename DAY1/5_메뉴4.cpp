@@ -72,9 +72,10 @@ int main()
 	kimbam.addMenu(&m1);
 	kimbam.addMenu(&m2);
 
-
 	PopupMenu pm("오늘의 메뉴");
 	pm.addMenu(&kimbam); // <<== 이부분이 이 예제의 핵심 입니다.
+						 // 현재는 에러입니다. 
+						 // 이 코드가 가능하도록 만드는 것이 이예제의 핵심입니다.
 	pm.addMenu(&m3);
 	pm.addMenu(&m4);
 	pm.command(); 

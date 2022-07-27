@@ -7,9 +7,9 @@ template<typename T, typename C = std::deque<T> > class stack
 {
 	C c;  
 public:
-	void push(const T& a) { c.push_back(a); }
-	void pop() { c.pop_back(); }
-	T& top() { return c.back(); }
+	inline void push(const T& a) { c.push_back(a); }
+	inline void pop() { c.pop_back(); }
+	inline T& top() { return c.back(); }
 };
 
 int main()

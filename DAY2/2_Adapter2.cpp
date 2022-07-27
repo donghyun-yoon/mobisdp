@@ -71,6 +71,8 @@ int main()
 	v.push_back( new Text2(&tv) );
 }
 
+// Decorator : 기능의 추가
+// Adapter   : 인터페이스의 변경
 
 
 

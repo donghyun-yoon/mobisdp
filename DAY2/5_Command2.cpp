@@ -44,9 +44,16 @@ public:
 		v.pop_back();
 		delete p;
 	}
+	// Factory Method 패턴
 	// 객체를 만들기 위한 인터페이스를 정의하고, 사용하지만
 	// 어떤 객체를 만들지는 파생클래스에 결정한다.
 	// 객체의 생성 시점을 서브클래스에 위임.
+
+	// 코드 구조는 "template method" 와 동일
+
+	// template method : 알고리즘의 변경
+	// factory  method : 어떤 객체를 만들지 객체의 타입을 결정
+	
 	virtual Shape* CreateShape() = 0;
 };
 
@@ -57,7 +64,6 @@ public:
 
 	virtual Shape* CreateShape() { return new Rect; }
 };
-
 
 class AddCircleCommand : public ICommand
 {

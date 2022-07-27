@@ -117,6 +117,20 @@ int main()
 
 			cmd_stk.push(pcmd);
 		}
+		else if (cmd == 0)
+		{
+			if (!cmd_stk.empty())
+			{
+				pcmd = cmd_stk.top();
+				cmd_stk.pop();
+
+				if (pcmd->canUndo())
+					pcmd->undo();
+
+				delete pcmd; // 지우지 말고, redo_stk.push(pcmd)
+							// 하면 redo 기능도 가능합니다.
+			}
+		}
 	}
 }
 

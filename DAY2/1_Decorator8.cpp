@@ -68,9 +68,20 @@ int main()
 	zd.Write("Hello");  
 
 }
-
+// C# 언어가 아래 처럼 되어 있습니다.
 // 저장소      Stream 클래스      Stream 꾸미기(Decorator)
 // 파일   <-   FileStream        EncryptDecorator
 // 파이프 <-   PipeStream        ZipDecorator 
 // N/W   <-   NetworkStream     XmlDecorator
 //								JsonDecorator
+
+// Folder 는 File 뿐 아니라 Folder 자체도 포함할수 있습니다.
+// => FOlder, File의 공통의 기반 클래스 필요
+// 
+// Decrator 는 객체 뿐아니라 Decorator 를 다시 꾸밀수 있습니다.
+// => 객체(우주선)과 Decorator는 동일 기반 클래스 필요
+
+// 재귀적 포함을 사용한 디자인 패턴
+// Composite : 재귀적 포함으로 "복합객체"를 만드는 패턴
+// Decorator : 재귀적 포함으로 "객체에 동적인 기능추가"
+//				여러개의 기능추가가 가능

@@ -32,11 +32,11 @@ struct ICommand
 
 class AddCommand : public ICommand
 {
-	std::vector<Shape*>& v; 
+	std::vector<Shape*>& v;
 public:
 	AddCommand(std::vector<Shape*>& v) : v(v) {}
-												// new T
-	virtual void execute() override { v.push_back( CreateShape() ); };
+	// new T
+	virtual void execute() override { v.push_back(CreateShape()); };
 	virtual bool canUndo() override { return true; }
 	virtual void undo()    override
 	{
@@ -44,16 +44,6 @@ public:
 		v.pop_back();
 		delete p;
 	}
-	// Factory Method 패턴
-	// 객체를 만들기 위한 인터페이스를 정의하고, 사용하지만
-	// 어떤 객체를 만들지는 파생클래스에 결정한다.
-	// 객체의 생성 시점을 서브클래스에 위임.
-
-	// 코드 구조는 "template method" 와 동일
-
-	// template method : 알고리즘의 변경
-	// factory  method : 어떤 객체를 만들지 객체의 타입을 결정
-	
 	virtual Shape* CreateShape() = 0;
 };
 
@@ -65,7 +55,7 @@ public:
 	virtual Shape* CreateShape() { return new Rect; }
 };
 
-class AddCircleCommand : public ICommand
+class AddCircleCommand : public AddCommand
 {
 public:
 	AddCircleCommand(std::vector<Shape*>& v) : AddCommand(v) {}
@@ -97,9 +87,38 @@ public:
 
 #include <stack>
 
+
+class MacroCommand : public ICommand // "Composite" 패턴의 기본 모양
+{
+	std::vector<ICommand*> v;
+public:
+	void addCommand(ICommand* p) { v.push_back(p); }
+	
+	void execute()
+	{
+		for (auto p : v)
+			p->execute();
+	}
+};
+
 int main()
 {
 	std::vector<Shape*> v;
+
+	MacroCommand* mc1 = new MacroCommand;
+	mc1->addCommand(new AddRectCommand(v));
+	mc1->addCommand(new AddCircleCommand(v));
+	mc1->addCommand(new DrawCommand(v));
+	
+	mc1->execute();
+
+
+	MacroCommand* mc2 = new MacroCommand;
+	mc2->addCommand(new AddRectCommand(v));
+	mc2->addCommand( mc1 );
+	mc2->execute();
+
+
 
 	std::stack<ICommand*> cmd_stk;
 
@@ -141,7 +160,7 @@ int main()
 				if (pcmd->canUndo())
 					pcmd->undo();
 
-				delete pcmd; 
+				delete pcmd;
 			}
 		}
 	}

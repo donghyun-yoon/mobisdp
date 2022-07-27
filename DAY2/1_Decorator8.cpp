@@ -68,3 +68,9 @@ int main()
 	zd.Write("Hello");  
 
 }
+
+// 저장소      Stream 클래스      Stream 꾸미기(Decorator)
+// 파일   <-   FileStream        EncryptDecorator
+// 파이프 <-   PipeStream        ZipDecorator 
+// N/W   <-   NetworkStream     XmlDecorator
+//								JsonDecorator

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <mutex>
 
 class Cursor
 {
@@ -10,16 +11,20 @@ public:
 
 public:
 	static Cursor* pinstance;
+	static std::mutex m;
 
 	static Cursor& getInstance()
 	{
+		m.lock();
 		if (pinstance == nullptr)
 			pinstance = new Cursor; // 蜡老茄 按眉甫 赛俊 积己
+		m.unlock();
 
 		return *pinstance;	
 	}
 };
 Cursor* Cursor::pinstance = nullptr;
+std::mutex Cursor::m;
 
 int main()
 {

@@ -43,6 +43,9 @@ public:
 
 
 // Show()를 Draw()로 이름을 변경하는 클래스를 만들자
+
+// Adapter 패턴 : 기존 클래스의 인터페이스(함수이름)을 변경해서
+//			     클라이언트가 요구하는 인터페이스를 제공하는 것. 
 class Text : public TextView, public Shape
 {
 public:

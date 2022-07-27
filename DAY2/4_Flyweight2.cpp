@@ -14,12 +14,32 @@ public:
 	void Draw() { std::cout << "Draw " << image_url << std::endl; }
 
 	// 자신의 객체를 생성하는 static 멤버 함수
+	static std::map<std::string, Image*> image_map;
+
 	static Image* Create(const std::string& url)
 	{
-		Image* img = new Image(url);
+		Image* img = nullptr;
+
+		auto ret = image_map.find(url);
+		
+		if (ret == image_map.end())
+		{
+			img = new Image(url);
+			image_map[url] = img;
+		}
+		else
+			img = ret->second; // ret는 pair 인데
+								// ret->first 는 키값(url)
+								// ret->second 는 value(Image*)
+
 		return img;
 	}
 };
+
+std::map<std::string, Image*> Image::image_map;
+
+
+
 
 int main()
 {

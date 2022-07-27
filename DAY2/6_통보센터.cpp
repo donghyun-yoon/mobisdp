@@ -22,7 +22,11 @@ using namespace std::placeholders;
 
 class NotificationCenter
 {
-	using HANDLER = void(*)(void*);
+//	using HANDLER = void(*)(void*); // 이렇게 하면 진짜 함수만 됩니다.
+									// 람다표현식등, 인자가 여러가인 함수등을
+									// 담기 어렵습니다.
+	using HANDLER = std::function<void(void*)>; // 이게 좋습니다.
+									// 함수포인터를 좀더 발전 시킨 타입
 
 	std::map<std::string, std::vector<HANDLER> > notif_map;
 public:
@@ -37,21 +41,24 @@ public:
 			f(hint);
 	}
 };
-
 void foo(void* p) { std::cout << "foo : " << (int)p << std::endl; }
 void goo(void* p) { std::cout << "goo : " << (int)p << std::endl; }
 //void goo(void* p, int a) { std::cout << "goo : " << (int)p << std::endl; }
 
-
 int main()
 {
-	NotificationCenter nc;
+	NotificationCenter nc; // 중재자.
 
 	nc.addObserver("LOWBATTERY", &foo);
 	nc.addObserver("LOWBATTERY", &goo);
+	nc.addObserver("DISCONNECT_WIFI", &goo);
+	nc.addObserver("DISCONNECT_WIFI", 
+		[](void* p) { std::cout << "lambda" << std::endl; } );
 
 	// 배터리 모듈쪽에서 배터리가 부족해지면
 	nc.postNotificationWithName("LOWBATTERY", (void*)30);
+	nc.postNotificationWithName("DISCONNECT_WIFI", (void*)0);
+	nc.postNotificationWithName("FILE_DELETE", (void*)0);
 }
 
 
